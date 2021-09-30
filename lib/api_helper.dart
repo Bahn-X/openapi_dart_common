@@ -49,11 +49,11 @@ Future<String?> decodeBodyBytes(Stream<List<int>> body) async {
 }
 
 String openApiDateTimeParameterToString(dynamic value) {
-  return Uri.encodeComponent((value as DateTime).toUtc().toIso8601String());
+  return (value as DateTime).toUtc().toIso8601String();
 }
 
 String openApiDateParameterToString(dynamic value) {
-  return Uri.encodeComponent((value as DateTime).toDateString());
+  return (value as DateTime).toDateString();
 }
 
 // this exists because we otherwise need an extension method DateTime.fromJson and i don't want to clash with other libs
@@ -87,8 +87,8 @@ final _regMap = RegExp(r'^Map<String,(.*)>$');
 
 typedef dynamic Deserializer(dynamic? value, String targetType);
 
-dynamic matchLeftovers(
-    dynamic value, String targetType, Deserializer deserialize) {
+dynamic matchLeftovers(dynamic value, String targetType,
+    Deserializer deserialize) {
   Match? match;
 
   if (value is List) {
